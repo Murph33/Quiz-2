@@ -12,10 +12,10 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+
 //= require_tree .
 $(document).on('ready', function() {
-
+  setTimeout(function(){
   $('.new_idea').hide()
   $('#idea').on('click', function() {
     if ($('.new_idea').is(":hidden")) {
@@ -24,7 +24,7 @@ $(document).on('ready', function() {
       $('.new_idea').hide();
       }
     })
-
+  },0)
 
 
 });

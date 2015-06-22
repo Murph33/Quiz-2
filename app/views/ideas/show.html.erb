@@ -21,6 +21,6 @@ Users that have joined the Idea:
   <% end %>
 <% end %>
 <% @idea.comments.each do |comment| %>
-<%= image_tag comment.user.avatar.url(:thumb) %> 
-  <p><%= comment.user.full_name %> comments: <%= comment.body %></p>
+
+  <p><%= image_tag comment.user.avatar.url(:thumb) %><%= comment.user.full_name %> comments: <%= comment.body %></p>
 <% end %>

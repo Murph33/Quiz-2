@@ -1,7 +1,7 @@
 <h1>The Idea Bank!</h1>
-
-<button id="idea">New Idea</button>
 <% if current_user %>
+  <button id="idea">New Idea</button>
+
   <div class="new_idea">
     Fill in the form
     <%= form_for [current_user, @idea] do |f| %>
