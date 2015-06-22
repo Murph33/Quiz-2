@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Idea Factory</title>
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <%= link_to "The Idea Bank!", index_path %> |
+  <% if current_user %>
+    <%= link_to "Edit Profile", edit_user_path(current_user) %> |
+    <%= link_to "Sign out", session_path(current_user), method: :delete %> |
+    <%= link_to "Submit an Idea", new_user_idea_path(current_user) %>
+  <% end %>
+  <% unless current_user %>
+    <%= link_to "Sign in", new_session_path %> |
+    <%= link_to "Create Account", new_user_path %> |
+  <% end %>
+
+  | Hi there, <%= current_user.full_name %>
+  <% if flash[:notice] %>
+  <div><%= flash[:notice] %></div>
+  <% end %>
+  <% if flash[:alert] %>
+  <div><%= flash[:alert] %></div>
+  <% end %>
+  <hr>
+
+  <%= yield %>
+
+</body>
+</html>

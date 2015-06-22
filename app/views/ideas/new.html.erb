@@ -1,0 +1,22 @@
+<h1> Create a New Idea!</h1>
+<% if @idea.errors.any? %>
+  <% @idea.errors.full_messages.each do |msg| %>
+    <%= msg %>
+  <% end %>
+<% end %>
+
+
+
+<%= form_for [current_user, @idea] do |f| %>
+
+  <div class="">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+  <div class="">
+    <%= f.label :body%>
+    <%= f.text_area :body%>
+  </div>
+  <%= f.submit %>
+
+<% end %>

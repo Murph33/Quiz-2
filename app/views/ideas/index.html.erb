@@ -1,0 +1,52 @@
+<h1>The Idea Bank!</h1>
+
+<button id="idea">New Idea</button>
+
+<div class="new_idea">
+  Fill in the form
+  <%= form_for [current_user, @idea] do |f| %>
+
+    <div class="">
+      <%= f.label :title %>
+      <%= f.text_field :title %>
+    </div>
+    <div class="">
+      <%= f.label :body%>
+      <%= f.text_area :body%>
+    </div>
+    <%= f.submit %>
+
+  <% end %>
+
+</div>
+
+
+<% @ideas.each do |idea| %>
+  <h3><%= link_to idea.title, user_idea_path(idea.user,idea) %></h3>
+
+  <p><%= idea.body %></p>
+  Created by: <%= idea.user.full_name %> |
+  <% unless idea.user == current_user || idea.joining_users.include?(current_user) || !current_user.present? %>
+    <%= link_to "Join", idea_joinings_path(idea), method: :post %>
+  <% end %>
+  <% if idea.joining_users.include?(current_user) %>
+    <% @idea = idea %>
+    <%= link_to "Leave", idea_joining_path(idea,
+              Joining.where(user: current_user, idea: idea)), method: :delete %>
+  <% end %>
+  <% unless idea.user == current_user || idea.liking_users.include?(current_user) || !current_user %>
+    <%= link_to "Like", idea_likes_path(idea), method: :post %>
+  <% end %>
+  <% if idea.liking_users.include?(current_user) %>
+    <%= link_to "UnLike", idea_like_path(idea,
+                Like.where(user: current_user, idea: idea)), method: :delete %>
+  <% end %>
+  <div>
+    Members: <%= idea.joining_users.length %>
+  </div>
+  <div class="">
+    Likes: <%= idea.liking_users.length %>
+  </div>
+  <hr>
+
+<% end %>
