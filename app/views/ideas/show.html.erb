@@ -1,7 +1,7 @@
 <h1> The wonderful <%= @idea.title %> idea!</h1>
 <%= image_tag @idea.user.avatar.url(:thumb) %>
 <p> <%= @idea.body %>
-
+  <%= image_tag @idea.avatar.url %>
 </p>
 <hr>
 Users that have joined the Idea:

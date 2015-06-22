@@ -4,7 +4,7 @@
 
   <div class="new_idea">
     Fill in the form
-    <%= form_for [current_user, @idea] do |f| %>
+    <%= form_for [current_user, @idea], :html => { :multipart => true } do |f| %>
 
       <div class="">
         <%= f.label :title %>
@@ -13,6 +13,9 @@
       <div class="">
         <%= f.label :body%>
         <%= f.text_area :body%>
+      </div>
+      <div>
+        <%= f.file_field :avatar %>
       </div>
       <%= f.submit %>
 
