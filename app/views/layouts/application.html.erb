@@ -18,7 +18,7 @@
     <%= link_to "Create Account", new_user_path %> |
   <% end %>
 
-  | Hi there, <%= current_user.full_name %>
+  | <% if current_user %>Hi there, <%= current_user.full_name %> <% end %>
   <% if flash[:notice] %>
   <div><%= flash[:notice] %></div>
   <% end %>

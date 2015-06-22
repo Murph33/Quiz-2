@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
   def create
     user_params = params.require(:user).permit(:first_name, :last_name, :email,
-                              :password, :password_confirmation, :current_password)
+                    :avatar,  :password, :password_confirmation, :current_password)
     @user = User.new user_params
     if @user.save
       session[:user_id] = @user.id
@@ -26,7 +26,7 @@ class UsersController < ApplicationController
 
   def update
     user_params = params.require(:user).permit(:first_name, :last_name, :email,
-                              :password, :password_confirmation)
+                              :password, :password_confirmation, :avatar)
     @user = current_user
     if !@user.authenticate(params[:user][:current_password])
       render :edit, alert: "Incorrect password!"

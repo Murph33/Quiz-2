@@ -1,5 +1,5 @@
 
-<%= form_for @user do |f| %>
+<%= form_for @user, :html => { :multipart => true } do |f| %>
   <div>
     <%= f.label :first_name %>
     <%= f.text_field :first_name %>
@@ -25,6 +25,9 @@
   <div>
     <%= f.label :password_confirmation %>
     <%= f.password_field :password_confirmation %>
+  </div>
+  <div>
+    <%= f.file_field :avatar %>
   </div>
 
   <%= f.submit %>

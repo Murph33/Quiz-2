@@ -1,25 +1,25 @@
 <h1>The Idea Bank!</h1>
 
 <button id="idea">New Idea</button>
+<% if current_user %>
+  <div class="new_idea">
+    Fill in the form
+    <%= form_for [current_user, @idea] do |f| %>
 
-<div class="new_idea">
-  Fill in the form
-  <%= form_for [current_user, @idea] do |f| %>
+      <div class="">
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="">
+        <%= f.label :body%>
+        <%= f.text_area :body%>
+      </div>
+      <%= f.submit %>
 
-    <div class="">
-      <%= f.label :title %>
-      <%= f.text_field :title %>
-    </div>
-    <div class="">
-      <%= f.label :body%>
-      <%= f.text_area :body%>
-    </div>
-    <%= f.submit %>
+    <% end %>
 
-  <% end %>
-
-</div>
-
+  </div>
+<% end %>
 
 <% @ideas.each do |idea| %>
   <h3><%= link_to idea.title, user_idea_path(idea.user,idea) %></h3>
